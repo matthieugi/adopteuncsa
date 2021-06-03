@@ -1,3 +1,10 @@
+# Adopte un CSA
+
+This project is meant to learn basic Azure architecture concepts, and create connexions between techs.
+
+Build with love by matthieugi, Maxime et Yassine
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
