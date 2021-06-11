@@ -1,37 +1,38 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import { UserProfile } from '../interfaces/userProfile';
-import Profile from '../profile';
+import React, { ReactElement, useEffect, useState } from "react";
+import { UserProfile } from "../interfaces/userProfile";
+import Profile from "../components/profile";
 
-import './App.css';
+import "./App.css";
 
 function App(): ReactElement {
-  const [profil, setProfil] = useState<UserProfile>({} as UserProfile);
-
-  useEffect(() => {
-    setProfil({
-      name: 'Matthieu Girard',
-      pictureUrl: 'https://images.unsplash.com/photo-1474447976065-67d23accb1e3',
-      preferences: {
-        javascript: 5,
-        java: 3,
-        dotnet: 1
-      }
-    });
-  }, [])
-
-  return (
-    <div className="App">
-      <div className="App-header">
-        <div className="App-title">Adopte un CSA</div>
-      </div>
-        { profil.name && <Profile profil={profil} /> }
-      <div>
-        <a>🔒</a>
-        <a>✔</a>
-      </div>
-    </div>
+  const [userProfile, setUserProfile] = useState<UserProfile>(
+    {} as UserProfile
   );
 
+  useEffect(() => {
+    setUserProfile({
+      name: "Matthieu Girard",
+      pictureUrl:
+        "https://images.rtl.fr/~r/880v587/rtl/www/1316834-ben-affleck-dans-la-peau-de-batman.jpeg",
+      preferences: [
+        { label: "Javascript", rating: 4 },
+        { label: "Java", rating: 2 },
+        { label: "React", rating: 3 },
+        { label: "C#", rating: 1 },
+      ],
+    } as UserProfile);
+  }, []);
+
+  return (
+    <div className="app">
+      <div className="app-header">
+        <div className="app-title">Adopte un CSA</div>
+        <div className="app-link">Candidats </div>
+        <div className="app-link">Matchs</div>
+      </div>
+      <Profile userProfile={userProfile} />
+    </div>
+  );
 }
 
 export default App;

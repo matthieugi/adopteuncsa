@@ -1,0 +1,51 @@
+.profile {
+    align-self: center;
+    color: primary;
+    margin-top: 2em;
+}
+
+.profile img {
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 30px;
+}
+
+.name {
+    text-align: center;
+}
+
+.preference-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.preference-label {
+    flex-grow: 1;
+}
+
+.preference-title {
+    margin-bottom: 0.5rem;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.actions button {
+    flex-grow: 1;
+    max-width: 50px;
+    font-size: larger;
+    height: 50px;
+    margin: 1em;
+    border-radius: 50%;
+    border: 0px;
+}
+
+.actions-refuse {
+    background-color: red;
+}
+
+.actions-accept {
+    background-color: green;
+}
