@@ -45,13 +45,12 @@
   display: inline-block;
   text-decoration: none;
   text-align: center;
-  vertical-align: bottom;
+  vertical-align: center;
   margin: auto;
   border-radius: 2px;
   min-width: 80px;
   height: 32px;
   color: rgb(255, 255, 255);
-  margin-bottom: 10px;
 }
 
 .login {
@@ -59,9 +58,7 @@
   border: 1px solid rgb(0, 120, 212);
 }
 
-.logOff {
-  color: #dc3545;
-  background-color: transparent;
-  background-image: none;
-  border-color: #dc3545;
+.logout {
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
 }

@@ -41,9 +41,9 @@ function App(): ReactElement {
         <div className="app-title">Adopte un CSA</div>
         <div className="app-link">Candidats</div>
         <div className="app-link">Matchs</div>
-        { userProperties?.clientPrincipal.userDetails === null ? 
+        { userProperties?.clientPrincipal === null ? 
           <div className="app-login"><a className="loginButton login" href="/.auth/login/aad">Login</a></div> :
-          <div className="app-login"><a className="loginButton logoff" href="/.auth/logout">Logout</a></div> }
+          <div className="app-login"><a className="loginButton logout" href="/.auth/logout">Logout</a></div> }
       </div>
       <Profile userProfile={userProfile} />
     </div>

@@ -4,9 +4,9 @@
     margin-top: 2em;
 }
 
-.profile img {
-    max-width: 500px;
-    max-height: 500px;
+.tindercard img {
+    display: block;
+    width: 100%;
     border-radius: 30px;
 }
 
@@ -27,9 +27,30 @@
     margin-bottom: 0.5rem;
 }
 
+.preference-block {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
 .actions {
     display: flex;
     justify-content: center;
+}
+
+.tindercard {
+    position: relative;
+    max-width: 400px;
+    height: auto;
+}
+
+.tindercard-overlay {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    color: white;
+    background-color: #393D3F;
+    border-radius: 0 0 30px 30px;
 }
 
 .actions button {
