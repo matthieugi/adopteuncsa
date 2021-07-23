@@ -3,8 +3,8 @@ import { UserProfile } from "../interfaces/userProfile";
 
 
 export const useMatch = () => {
-    const [candidateProfile, setCandidateProfile] = useState<UserProfile>(
-        {} as UserProfile
+    const [candidateProfile, setCandidateProfile] = useState<UserProfile[]>(
+        [] as UserProfile[]
     );
 
     async function refuseMatch() {
@@ -29,9 +29,10 @@ export const useMatch = () => {
 
     async function fetchNewCandidate() {
         //TODO: Integrate Fetch Candidate API
+        console.log('fetch new candidate');
         return new Promise((resolve, reject) => {
-          resolve(
-            setCandidateProfile({
+          setCandidateProfile(
+            [{
               name: "Matthieu Girard",
               pictureUrl:
                 "https://images.unsplash.com/photo-1474447976065-67d23accb1e3",
@@ -40,8 +41,9 @@ export const useMatch = () => {
                 { label: "java", rating: 3 },
                 { label: "dotnet", rating: 1 },
               ],
-            })
-          );
+            }]);
+
+          resolve('fetched new candidate');
         });
       }
     
