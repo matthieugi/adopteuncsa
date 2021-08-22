@@ -1,14 +1,42 @@
-.profile {
-    align-self: center;
-    color: primary;
-    margin-top: 2em;
+
+.preference-block {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.tindercard {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .tindercard img {
-    display: block;
-    width: 100%;
     border-radius: 30px;
+    max-width: 260px;
 }
+
+.tindercard-overlay {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    color: white;
+    background-color: #393D3F;
+    border-radius: 0 0 30px 30px;
+}
+
+.profileContainer {
+    color: primary;
+    display: block;
+    margin-top: 2em;
+}
+
+.tindercard, .profileContainer {
+    max-width: 260px;
+    height: 300px;
+}
+
 
 .name {
     text-align: center;
@@ -25,48 +53,4 @@
 
 .preference-title {
     margin-bottom: 0.5rem;
-}
-
-.preference-block {
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-}
-
-.actions {
-    display: flex;
-    justify-content: center;
-}
-
-.tindercard {
-    position: relative;
-    max-width: 400px;
-    height: auto;
-}
-
-.tindercard-overlay {
-    position: absolute;
-    bottom: 0%;
-    width: 100%;
-    color: white;
-    background-color: #393D3F;
-    border-radius: 0 0 30px 30px;
-}
-
-.actions button {
-    flex-grow: 1;
-    max-width: 50px;
-    font-size: larger;
-    height: 50px;
-    margin: 1em;
-    border-radius: 50%;
-    border: 0px;
-}
-
-.actions-refuse {
-    background-color: red;
-}
-
-.actions-accept {
-    background-color: green;
 }

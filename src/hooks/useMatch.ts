@@ -29,19 +29,50 @@ export const useMatch = () => {
 
     async function fetchNewCandidate() {
         //TODO: Integrate Fetch Candidate API
-        console.log('fetch new candidate');
+        console.log('fetching new candidate');
+
         return new Promise((resolve, reject) => {
           setCandidateProfile(
             [{
               name: "Matthieu Girard",
               pictureUrl:
-                "https://images.unsplash.com/photo-1474447976065-67d23accb1e3",
+                "https://randomuser.me/api/portraits/lego/1.jpg",
               preferences: [
                 { label: "javascript", rating: 5 },
                 { label: "java", rating: 3 },
                 { label: "dotnet", rating: 1 },
               ],
-            }]);
+            },
+            {
+              name: "Richard Hendricks",
+              pictureUrl:
+                "https://randomuser.me/api/portraits/lego/7.jpg",
+              preferences: [
+                { label: "javascript", rating: 5 },
+                { label: "java", rating: 3 },
+                { label: "dotnet", rating: 1 },
+              ],
+            },            
+            {
+              name: "Jared Dunn",
+              pictureUrl:
+                "https://randomuser.me/api/portraits/lego/6.jpg",
+              preferences: [
+                { label: "javascript", rating: 5 },
+                { label: "java", rating: 3 },
+                { label: "dotnet", rating: 1 },
+              ],
+            },             
+            {
+              name: "Dinesh Chugtai",
+              pictureUrl:
+                "https://randomuser.me/api/portraits/lego/3.jpg",
+              preferences: [
+                { label: "javascript", rating: 5 },
+                { label: "java", rating: 3 },
+                { label: "dotnet", rating: 1 },
+              ],
+            }],);
 
           resolve('fetched new candidate');
         });
