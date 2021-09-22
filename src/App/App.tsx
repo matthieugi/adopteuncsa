@@ -1,30 +1,13 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { UserProfile } from "../interfaces/userProfile";
 import Profile from "../components/profile";
+import Login from '../components/login';
+import Signup from '../components/signup';
 import { UserProperties } from "../interfaces/userProperties";
 
 import "./App.css";
 
 function App(): ReactElement {
-  const [userProfile, setUserProfile] = useState<UserProfile>(
-    {} as UserProfile
-  );
-
   const [userProperties, setUserProperties] = useState<UserProperties | null>(null);
-
-  useEffect(() => {
-    setUserProfile({
-      name: "Matthieu Girard",
-      pictureUrl:
-        "https://images.rtl.fr/~r/880v587/rtl/www/1316834-ben-affleck-dans-la-peau-de-batman.jpeg",
-      preferences: [
-        { label: "Javascript", rating: 4 },
-        { label: "Java", rating: 2 },
-        { label: "React", rating: 3 },
-        { label: "C#", rating: 1 },
-      ],
-    } as UserProfile);
-  }, []);
 
   useEffect(() => {
     async function fetchUserProperties() {
@@ -45,7 +28,9 @@ function App(): ReactElement {
           <div className="app-login"><a className="loginButton login" href="/.auth/login/aad">Login</a></div> :
           <div className="app-login"><a className="loginButton logout" href="/.auth/logout">Logout</a></div> }
       </div>
-      <Profile userProfile={userProfile} />
+      { userProperties?.clientPrincipal === null ? 
+        <Signup /> :
+      <Profile /> }
     </div>
   );
 }

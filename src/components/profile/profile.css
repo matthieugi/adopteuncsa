@@ -6,21 +6,31 @@
 }
 
 .tindercard {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: absolute;
 }
 
-.tindercard img {
-    border-radius: 30px;
-    max-width: 260px;
+.tindercard-profilePicture {
+    background-color: darkgray;
+    border-radius: 30px 30px 0 0;
+}
+
+.tindercard-profilePicture img {
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    display: block;
+    width: 150px;
 }
 
 .tindercard-overlay {
-    position: absolute;
-    bottom: 0%;
-    width: 100%;
+    position: relative;
+    bottom: 0;
+    top:0;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    width: 250px;
     color: white;
     background-color: #393D3F;
     border-radius: 0 0 30px 30px;
@@ -28,15 +38,16 @@
 
 .profileContainer {
     color: primary;
-    display: block;
     margin-top: 2em;
 }
 
-.tindercard, .profileContainer {
-    max-width: 260px;
-    height: 300px;
+.tindercard-inner {
+    height: auto;
 }
 
+.swipe {
+    position: absolute;
+}
 
 .name {
     text-align: center;

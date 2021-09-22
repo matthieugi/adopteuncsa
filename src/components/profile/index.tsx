@@ -1,60 +1,82 @@
-import { ReactElement } from "react";
-import { useMatch } from '../../hooks/useMatch';
+import { ReactElement, useState, useEffect } from "react";
+import { useMatch } from "../../hooks/useMatch";
 import Rating from "@material-ui/lab/Rating";
 import { UserProfile } from "../../interfaces/userProfile";
 import TinderCard from "react-tinder-card";
 
 import "./profile.css";
 
-function Profile(props: { userProfile: UserProfile }): ReactElement {
+function Profile(props: { }): ReactElement {
+  const { acceptMatch, refuseMatch, fetchNewCandidates } = useMatch();
+  const [candidates, setCandidates] = useState([] as UserProfile[]);
 
-  const { candidateProfile, acceptMatch, refuseMatch } = useMatch();
+  useEffect(() => { 
+    const init = async () => {
+      setCandidates(await fetchNewCandidates())
+    }
+    init();
+  }, []);
 
-  if(candidateProfile.length === 0) {
-      return (<h2>Loading candidate...</h2>);
-  } 
+  if (candidates.length === 0) {
+    return <h2>Loading candidate...</h2>;
+  }
 
   const cardSwipped = async (direction: string) => {
     console.log(direction);
     switch (direction) {
-      case 'right': 
+      case "right":
         await acceptMatch();
         break;
-      case 'left':
+      case "left":
         await refuseMatch();
         break;
       default:
-        console.log('Unknown side');
+        console.log("Unknown side");
     }
+
+    candidates.pop();
+    candidates.length < 3 ? setCandidates([...candidates, ...(await fetchNewCandidates()) as  UserProfile[]]) :
+      setCandidates([...candidates]);
   };
 
   return (
     <div className="profileContainer">
-      {candidateProfile.map( (candidateProfile) => 
-        <TinderCard key={candidateProfile.name} preventSwipe={['up', 'down']} onSwipe={cardSwipped}>
+      {candidates.map((candidateProfile) => (
         <div className="tindercard">
-          <img alt="user profile" src={candidateProfile.pictureUrl} />
-          <div className="tindercard-overlay">
-            <h2 className="name">{candidateProfile.name}</h2>
-            <div className="preference-block">
-              <h3 className="preference-title">Ses préférences : </h3>
-              {candidateProfile.preferences.map((preference) => (
-                <div className="preference-row" key={preference.label}>
-                  <div className="preference-label"> {preference.label} : </div>
-                  <div className="preference-rating">
-                    <Rating
-                      className="rating"
-                      readOnly={true}
-                      value={preference.rating}
-                    />
-                  </div>
+          <div className="swipe">
+            <TinderCard
+              key={candidateProfile.name}
+              preventSwipe={["up", "down"]}
+              onSwipe={cardSwipped}
+            >
+              <div className="tindercard-profilePicture">
+                <img alt="user profile" src={candidateProfile.pictureUrl} />
+              </div>
+              <div className="tindercard-overlay">
+                <h2 className="name">{candidateProfile.name}</h2>
+                <div className="preference-block">
+                  <h4>Github : { candidateProfile.github }</h4>
+                  <h3 className="preference-title">Ses préférences : </h3>
+                  {candidateProfile.preferences.map((preference) => (
+                    <div className="preference-row" key={preference.label}>
+                      <div className="preference-label">
+                        {" "}{preference.label} :{" "}
+                      </div>
+                      <div className="preference-rating">
+                        <Rating
+                          className="rating"
+                          readOnly={true}
+                          value={preference.rating}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            </TinderCard>
           </div>
         </div>
-      </TinderCard>
-      )}
+      ))}
     </div>
   );
 }
