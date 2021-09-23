@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "route": "getUser/{identityProvider}/{userId}",
+      "methods": ["get"]
+    },
+    {
+      "name": "user",
+      "type": "cosmosDB",
+      "databaseName": "AdopteProd",
+      "collectionName": "users",
+      "connectionStringSetting": "COSMOSDB_CONNECTIONSTRING",
+      "direction": "in",
+      "sqlQuery": "SELECT * from c where c.userId = {userId} offset 0 limit 1"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+  ],
+  "scriptFile": "../dist/GetUser/index.js"
+}

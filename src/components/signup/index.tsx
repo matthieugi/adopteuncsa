@@ -1,8 +1,9 @@
 
 import { TextField, Button, List, ListItemText, ListItem } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { ReactElement } from "react";
+import { UserProperties } from "../../interfaces/userProperties";
 import "./signup.css";
 
 interface TechnoList {
@@ -11,10 +12,11 @@ interface TechnoList {
     rating: number
 }
 
-function Signup(): ReactElement {
+function Signup( props : any): ReactElement {
     let [githubId, setGithubId] = useState('');
     let [techno, setTechno] = useState('Typescript');
     let [technoList, setTechnoList] = useState([] as TechnoList[]);
+    const fetchUserProperties = props.fetchUserProperties;
 
     const changeGithubId = (event : any) => {
         setGithubId(event.target.value);
@@ -49,6 +51,20 @@ function Signup(): ReactElement {
         setTechnoList([...technoListTemp]);
     }
 
+    const signup = async () => {
+        if(technoList.length !== 0 && githubId !== ''){
+            await fetch('api/CreateUser', {
+                method: "POST",
+                body: JSON.stringify({
+                    githubId : githubId,
+                    technos: technoList
+                })
+            });
+
+            fetchUserProperties();
+        }
+    }
+
     return (
         <div className="signupForm">
             <TextField id="outlined-basic" label="Github Id" variant="outlined" value={githubId} onChange={changeGithubId} /><br/>
@@ -66,7 +82,7 @@ function Signup(): ReactElement {
                         </ListItem>
                     )} 
                 </List>
-                <Button className="signupButton">S'enregistrer</Button>
+                <Button className="signupButton" onClick={signup}>S'enregistrer</Button>
             </div>
         </div>
     );
