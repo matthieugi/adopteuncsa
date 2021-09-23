@@ -15,7 +15,7 @@ function Profile(props: { }): ReactElement {
       setCandidates(await fetchNewCandidates())
     }
     init();
-  }, []);
+  }, [fetchNewCandidates]);
 
   if (candidates.length === 0) {
     return <h2>Loading candidate...</h2>;

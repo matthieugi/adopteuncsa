@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { UserProfile } from "../interfaces/userProfile";
 
 export const useMatch = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [candidateProfile, setCandidateProfile] = useState<UserProfile[]>(
     [] as UserProfile[]
   );

@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import Profile from "../components/profile";
-import Login from '../components/login';
 import Signup from '../components/signup';
 import { UserProperties } from "../interfaces/userProperties";
 
