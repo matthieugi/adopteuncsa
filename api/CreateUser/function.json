@@ -20,7 +20,7 @@
       "databaseName": "AdopteProd",
       "collectionName": "users",
       "createIfNotExists": true,
-      "connectionStringSetting": "COSMOSDB-CONNECTIONSTRING",
+      "connectionStringSetting": "COSMOSDB",
       "direction": "out"
   }
   ],
