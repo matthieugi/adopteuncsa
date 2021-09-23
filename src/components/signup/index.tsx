@@ -1,9 +1,8 @@
 
 import { TextField, Button, List, ListItemText, ListItem } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { ReactElement } from "react";
-import { UserProperties } from "../../interfaces/userProperties";
 import "./signup.css";
 
 interface TechnoList {
