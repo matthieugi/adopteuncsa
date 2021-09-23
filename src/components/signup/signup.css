@@ -1,0 +1,9 @@
+.signupButton {
+    background-color: rgb(0, 120, 212);
+    border: 1px solid rgb(0, 120, 212);
+    color: white;
+}
+
+.signupForm {
+  margin-top: 2.5em;
+}

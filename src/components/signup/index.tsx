@@ -1,35 +1,72 @@
 
-import { TextField, Button } from "@material-ui/core";
-import { ChangeEventHandler, ReactEventHandler, useState } from "react";
+import { TextField, Button, List, ListItemText, ListItem } from "@material-ui/core";
+import { Rating } from "@material-ui/lab";
+import { useState } from "react";
 import { ReactElement } from "react";
+import "./signup.css";
+
+interface TechnoList {
+    id: number,
+    label: string,
+    rating: number
+}
 
 function Signup(): ReactElement {
-    let [githubId, setGithubId] = useState('MonHandleGithub');
+    let [githubId, setGithubId] = useState('');
     let [techno, setTechno] = useState('Typescript');
-    // let [preferredTechno, setPreferredTechno] = [];
+    let [technoList, setTechnoList] = useState([] as TechnoList[]);
 
     const changeGithubId = (event : any) => {
-        setGithubId(event.value);
+        setGithubId(event.target.value);
     }
 
     const changeTechno = (event: any) => {
-        console.log('in');
+        setTechno(event.target.value);
     }
 
     const addTechno = () => {
-        console.log('in');
+        if(techno !== '') {
+            setTechnoList([
+                ...technoList,
+                {
+                    id:technoList.length,
+                    label: techno,
+                    rating: 3
+                }
+            ]);
+            setTechno('');
+        }
+    }
+
+    const changeTechnoRating = (id: number, event:any) => {
+        let technoListTemp = technoList;
+        technoListTemp[id] = {
+            id: id,
+            label: technoListTemp[id].label,
+            rating: Number.parseInt(event.target.value)
+        }
+        
+        setTechnoList([...technoListTemp]);
     }
 
     return (
-        <div>
+        <div className="signupForm">
             <TextField id="outlined-basic" label="Github Id" variant="outlined" value={githubId} onChange={changeGithubId} /><br/>
             <h2>Technos</h2>
             <div>
-                <TextField label='Votre Techno préférée' defaultValue='Typescript' onChange={changeTechno} value={techno} />
-                <Button onChange={addTechno}>Ajouter</Button>
+                <TextField label='Vos Technos préférées' defaultValue={techno} onChange={changeTechno} value={techno} />
+                <Button onClick={addTechno}>Ajouter</Button>
             </div>
             <div>
-                {}
+                <List>
+                    {technoList.map((techno) => 
+                        <ListItem key={techno.id}>
+                            <ListItemText>{techno.label}</ListItemText>
+                            <Rating value={techno.rating} key={techno.id} onChange={(event) => changeTechnoRating(techno.id, event)} />
+                        </ListItem>
+                    )} 
+                </List>
+                <Button className="signupButton">S'enregistrer</Button>
             </div>
         </div>
     );
